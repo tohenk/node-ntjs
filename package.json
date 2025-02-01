@@ -1,7 +1,7 @@
 {
   "name": "@ntlab/ntjs",
-  "version": "2.4.0",
-  "description": "Node Javascript repository",
+  "version": "3.0.0",
+  "description": "NODE-NTJS Javascript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "ntjs",
-    "javascript",
-    "repository"
+    "javascript"
   ],
   "author": "Toha <tohenk@yahoo.com>",
   "license": "MIT",
@@ -22,6 +21,6 @@
   },
   "homepage": "https://github.com/tohenk/node-ntjs#readme",
   "dependencies": {
-    "debug": "^4.3.7"
+    "debug": "^4.4.0"
   }
 }

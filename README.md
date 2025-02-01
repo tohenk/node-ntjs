@@ -1,5 +1,4 @@
-Code Javascript Everywhere!
-===========================
+# Code Javascript Everywhere!
 
 This is a port of [PHP-NTJS](https://github.com/tohenk/php-ntjs).
 
@@ -7,15 +6,14 @@ NODE-NTJS allows to dynamically manage your javascripts, stylesheets, and
 scripts so you can focus on your code. You can code your javascript using
 ES6 class, or write directly in the javascript code, even on template.
 
-JQuery and SemanticUI/FomanticUI
---------------------------------
+## JQuery and SemanticUI/FomanticUI
 
 Support for popular javascript like JQuery, SemanticUI/FomanticUI.
 
-Using external CDN
-------------------
+## Using external CDN
 
-An external CDN is also supported, simply pass CDN parameters to ScriptManager
+An external CDN is also supported, simply pass CDN parameters to ScriptManager.
+
 ```js
 const { ScriptManager } = require('@ntlab/ntjs');
 
@@ -36,12 +34,10 @@ const cdn = {
 ScriptManager.parseCdn(cdn);
 ```
 
-Example Usage
--------------
+## Example Usage
 
 See usage example in [NODE-EXPRESS-MIDDLEWARE](https://github.com/tohenk/node-express-middleware).
 
-TODO
-----
+## TODO
 
 * Script output minifying is not yet supported.

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2018-2024 Toha <tohenk@yahoo.com>
+ * Copyright (c) 2018-2025 Toha <tohenk@yahoo.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-const { Script } = require('./index');
+const { Script } = require('.');
 
 /**
  * Javascript XHR loader.
@@ -40,21 +40,25 @@ if (!document.ntloader) {
         parent: document.head ? document.head : document.body,
         scriptQueue: [],
         scriptLoaded: [],
-        hasAsset: function(parent, tag, path) {
+        hasAsset(parent, tag, path) {
             if (parent) {
                 const elems = parent.getElementsByTagName(tag);
                 for (let i = 0; i < elems.length; i++) {
                     const el = elems[i];
                     // stylesheet
                     if ('link' === tag) {
-                        if (!el.hasAttribute('rel') || 'stylesheet' !== el.getAttribute('rel')) continue;
+                        if (!el.hasAttribute('rel') || 'stylesheet' !== el.getAttribute('rel')) {
+                            continue;
+                        }
                         if (el.hasAttribute('href') && path === el.getAttribute('href')) {
                             return true;
                         }
                     }
                     // javascript
                     if ('script' === tag) {
-                        if (!el.hasAttribute('type') || 'text/javascript' !== el.getAttribute('type')) continue;
+                        if (!el.hasAttribute('type') || 'text/javascript' !== el.getAttribute('type')) {
+                            continue;
+                        }
                         if (el.hasAttribute('src') && path === el.getAttribute('src')) {
                             return true;
                         }
@@ -63,7 +67,7 @@ if (!document.ntloader) {
             }
             return false;
         },
-        isAssetExist: function(tag, path) {
+        isAssetExist(tag, path) {
             if (document.head && this.hasAsset(document.head, tag, path)) {
                 return true;
             } else if (document.body && this.hasAsset(document.body, tag, path)) {
@@ -71,10 +75,10 @@ if (!document.ntloader) {
             }
             return false;
         },
-        isStylesheetLoaded: function(path) {
+        isStylesheetLoaded(path) {
             return this.isAssetExist('link', path);
         },
-        queueStylesheet: function(path) {
+        queueStylesheet(path) {
             const self = this;
             const el = document.createElement('link');
             el.rel = 'stylesheet';
@@ -82,7 +86,7 @@ if (!document.ntloader) {
             el.href = path;
             self.parent.appendChild(el);
         },
-        loadStylesheets: function(paths) {
+        loadStylesheets(paths) {
             const self = this;
             const items = [];
             for (let i = 0; i < paths.length; i++) {
@@ -92,10 +96,10 @@ if (!document.ntloader) {
             }
             return items;
         },
-        isJavascriptLoaded: function(path) {
+        isJavascriptLoaded(path) {
             return this.isAssetExist('script', path);
         },
-        queueJavascript: function(path) {
+        queueJavascript(path) {
             const self = this;
             const el = document.createElement('script');
             el.type = 'text/javascript';
@@ -111,20 +115,20 @@ if (!document.ntloader) {
             }
             self.parent.appendChild(el);
         },
-        removeQueue: function(path) {
+        removeQueue(path) {
             const idx = this.scriptQueue.indexOf(path);
             if (idx >= 0) {
                 this.scriptQueue.splice(idx, 1);
                 this.processJavascriptQueue();
             }
         },
-        processJavascriptQueue: function() {
+        processJavascriptQueue() {
             if (0 === this.scriptQueue.length) {
                 return;
             }
             this.queueJavascript(this.scriptQueue[0]);
         },
-        loadJavascripts: function(paths) {
+        loadJavascripts(paths) {
             const self = this;
             const items = [];
             for (let i = 0; i < paths.length; i++) {
@@ -134,10 +138,10 @@ if (!document.ntloader) {
             }
             return items;
         },
-        isScriptLoaded: function() {
+        isScriptLoaded() {
             return this.scriptQueue.length === 0 ? true : false;
         },
-        load: function(assets) {
+        load(assets) {
             let i;
             if (assets.css) {
                 const css = this.loadStylesheets(assets.css);
